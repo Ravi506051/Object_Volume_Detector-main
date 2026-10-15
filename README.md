@@ -32,6 +32,42 @@ The application takes one or two images (front and side views), camera parameter
 ![Measurement Results Visualization (Front)](images/objects_with_dimensions_filtered.jpg)
 *The front view image with detected objects and their estimated dimensions overlaid.*
 
+
+## 🔬 Accuracy and Evaluation
+
+The estimated dimensions depend on depth prediction, camera parameters, reference-object calibration, and image quality. To evaluate the system, compare its predicted measurements with manually measured ground-truth dimensions.
+
+Recommended evaluation metrics:
+
+- **Absolute Error:** Absolute difference between estimated and actual dimensions.
+- **Relative Error (%):** Measurement error relative to the actual dimension.
+- **Mean Absolute Error (MAE):** Average absolute measurement error across test objects.
+
+## 🌍 Real-World Applications
+
+- Approximate object size estimation from images
+- Educational computer vision demonstrations
+- Preliminary dimension estimation for household objects
+- Exploring monocular depth estimation and image processing
+
+## 🚀 Future Improvements
+
+- Improve measurement calibration and depth estimation
+- Add support for more image formats and challenging lighting conditions
+- Provide measurement confidence or uncertainty estimates
+- Test performance across different object shapes, distances, and camera devices
+- Improve object detection in cluttered scenes
+
+## ⚠️ Important Note
+
+This project provides estimated dimensions, not guaranteed precision measurements. Validate results with physical measurements before using them in engineering, manufacturing, or safety-critical applications.
+
+## 👨‍💻 Project Maintainer
+
+Ravi Kumar Rao
+
+GitHub: https://github.com/Ravi506051
+
 ### Example Combined 3D Results
 
 The application displays the estimated dimensions numerically. For example:
