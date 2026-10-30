@@ -175,3 +175,9 @@ Depth-estimation models generally provide relative depth unless a reliable calib
 - Keep the reference object visible and measure its known dimension accurately.
 - Check behavior when the reference object or target boundary cannot be detected.
 - Treat output dimensions as estimates, not certified measurements.
+
+## Project Development Notes
+
+Compare estimated dimensions with physical measurements across varied objects and distances. Record camera parameters, reference-object calibration, and absolute/relative measurement error.
+
+For reproducible updates, record the dataset or upstream version, environment and dependency versions, configuration, and actual outputs from each run. Keep illustrative examples clearly labelled and never commit credentials or private data.
