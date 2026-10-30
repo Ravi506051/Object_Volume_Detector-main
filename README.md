@@ -164,3 +164,14 @@ Before you begin, ensure you have the following installed on your system:
 5.  **Run Measurement:** Click the button or follow the prompts in the application to initiate the depth estimation and dimension measurement process.
 6.  **View Results:** The application will display the detected objects (if any) with their estimated dimensions and distances overlaid on the image(s), along with numerical results.
 7.  **Two-View Analysis (Optional):** If you uploaded a second (side view) image, follow the same steps for that image to obtain depth and height measurements, which will then be combined with the front view results.
+
+## Measurement Considerations
+
+Depth-estimation models generally provide relative depth unless a reliable calibration procedure converts it to metric scale. Measurement quality depends on camera properties, the reference object's known dimensions, object boundaries, perspective, and image quality. Validate estimates against objects with known dimensions and report the observed error before using measurements in a practical setting.
+
+## Testing Checklist
+
+- Test front and side views separately before combining measurements.
+- Keep the reference object visible and measure its known dimension accurately.
+- Check behavior when the reference object or target boundary cannot be detected.
+- Treat output dimensions as estimates, not certified measurements.
