@@ -181,3 +181,9 @@ Depth-estimation models generally provide relative depth unless a reliable calib
 Compare estimated dimensions with physical measurements across varied objects and distances. Record camera parameters, reference-object calibration, and absolute/relative measurement error.
 
 For reproducible updates, record the dataset or upstream version, environment and dependency versions, configuration, and actual outputs from each run. Keep illustrative examples clearly labelled and never commit credentials or private data.
+
+### Technical Deep Dive
+
+The measurement chain combines monocular depth estimation, reference-object scale calibration, image-space object boundaries, and geometric conversion into approximate dimensions. Relative depth from a model is not automatically metric depth; the calibration assumptions and camera parameters determine whether the resulting scale is meaningful. Front/side fusion also assumes suitable object orientation and alignment.
+
+Suggested engineering checks: record model checkpoint and camera/FoV inputs, reject invalid or missing reference dimensions, compare estimates with physical measurements across distances, and report absolute and relative error. Do not use the output as a certified measurement.
