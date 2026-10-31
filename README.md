@@ -195,3 +195,11 @@ Suggested engineering checks: record model checkpoint and camera/FoV inputs, rej
 - Compare predicted dimensions with manually measured ground truth across multiple object sizes and distances.
 - Report absolute and relative error, and inspect how errors change with lighting, occlusion, perspective, and reference placement.
 - Clearly label results as estimates; camera and calibration uncertainty can substantially affect measurements.
+
+## Measurement and Calibration Notes
+
+- Document the camera setup, reference object dimensions, measurement units, and assumptions used for scale estimation.
+- Keep camera position and object distance consistent where the method requires calibration.
+- Validate measurements against known reference objects and report absolute or percentage error.
+- Handle partial occlusion, perspective distortion, poor lighting, and inaccurate object boundaries explicitly.
+- Present volume estimates with their units and explain that accuracy depends on calibration and geometric assumptions.
