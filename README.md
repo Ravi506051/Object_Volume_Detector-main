@@ -187,3 +187,11 @@ For reproducible updates, record the dataset or upstream version, environment an
 The measurement chain combines monocular depth estimation, reference-object scale calibration, image-space object boundaries, and geometric conversion into approximate dimensions. Relative depth from a model is not automatically metric depth; the calibration assumptions and camera parameters determine whether the resulting scale is meaningful. Front/side fusion also assumes suitable object orientation and alignment.
 
 Suggested engineering checks: record model checkpoint and camera/FoV inputs, reject invalid or missing reference dimensions, compare estimates with physical measurements across distances, and report absolute and relative error. Do not use the output as a certified measurement.
+
+## Measurement Validation
+
+- Treat monocular depth as relative unless the calibration procedure provides a reliable metric scale.
+- Record camera parameters, reference-object dimensions, image resolution, and the exact calibration method for each measurement.
+- Compare predicted dimensions with manually measured ground truth across multiple object sizes and distances.
+- Report absolute and relative error, and inspect how errors change with lighting, occlusion, perspective, and reference placement.
+- Clearly label results as estimates; camera and calibration uncertainty can substantially affect measurements.
