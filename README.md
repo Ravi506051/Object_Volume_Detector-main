@@ -203,3 +203,10 @@ Suggested engineering checks: record model checkpoint and camera/FoV inputs, rej
 - Validate measurements against known reference objects and report absolute or percentage error.
 - Handle partial occlusion, perspective distortion, poor lighting, and inaccurate object boundaries explicitly.
 - Present volume estimates with their units and explain that accuracy depends on calibration and geometric assumptions.
+
+## Measurement Calibration and Error Analysis
+
+- Evaluate estimates against manually measured ground-truth objects across different sizes, distances, and camera angles.
+- Record reference-object dimensions, camera parameters, image resolution, and calibration assumptions for each test.
+- Report absolute and relative measurement error, and inspect whether error increases with distance or object shape.
+- Explain that monocular depth and single-view scale estimates are approximate; avoid presenting them as precision instruments.
