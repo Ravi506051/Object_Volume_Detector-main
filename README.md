@@ -1,212 +1,31 @@
-# Object Dimensions Detector using a Single Camera
-
-This project demonstrates a Streamlit application for estimating the real-world dimensions (width, height, depth) and distance of objects from standard 2D images using a single camera (or dual front/side views). It leverages a pre-trained monocular depth estimation model and a user-defined reference object for scale calibration.
-
-## Overview
-
-The application takes one or two images (front and side views), camera parameters (focal length or field of view), and the known dimension of a reference object as input. It then:
-
-1.  **Estimates Depth:** Uses a pre-trained DPT model to generate a relative depth map for each input image.
-2.  **Calibrates Scale:** Allows the user to draw a bounding box around a reference object with a known real-world dimension to establish a metric scale.
-3.  **Detects Objects:** Automatically detects potential target objects in the image based on depth discontinuities or proximity.
-4.  **Estimates Dimensions:** Calculates the width, height, and distance of the detected objects based on their pixel size, estimated depth, and the calibrated scale.
-5.  **Combines Views (Optional):** If two views are provided, it combines the width and height from the front view with the depth and height from the side view to provide a 3D dimension estimate.
-
-## Screenshots
-
-### Input and Depth Estimation (Front View)
-
-![Input Front View Image](images/PXL_20250418_052835918.jpg)
-*Example of an uploaded front view image.*
-
-![Estimated Depth Map](images/depth_analysis_image_1.png)
-*The relative depth map estimated by the DPT model for the front view.*
-
-### Object Detection
-
-![Object Detection](images/depth_detection_debug.png)
-*Visualization of the object detection process based on the depth map.*
-
-### Measurement Results (Front View)
-
-![Measurement Results Visualization (Front)](images/objects_with_dimensions_filtered.jpg)
-*The front view image with detected objects and their estimated dimensions overlaid.*
-
-
-## 🔬 Accuracy and Evaluation
-
-The estimated dimensions depend on depth prediction, camera parameters, reference-object calibration, and image quality. To evaluate the system, compare its predicted measurements with manually measured ground-truth dimensions.
-
-Recommended evaluation metrics:
-
-- **Absolute Error:** Absolute difference between estimated and actual dimensions.
-- **Relative Error (%):** Measurement error relative to the actual dimension.
-- **Mean Absolute Error (MAE):** Average absolute measurement error across test objects.
-
-## 🌍 Real-World Applications
-
-- Approximate object size estimation from images
-- Educational computer vision demonstrations
-- Preliminary dimension estimation for household objects
-- Exploring monocular depth estimation and image processing
-
-## 🚀 Future Improvements
-
-- Improve measurement calibration and depth estimation
-- Add support for more image formats and challenging lighting conditions
-- Provide measurement confidence or uncertainty estimates
-- Test performance across different object shapes, distances, and camera devices
-- Improve object detection in cluttered scenes
-
-## ⚠️ Important Note
-
-This project provides estimated dimensions, not guaranteed precision measurements. Validate results with physical measurements before using them in engineering, manufacturing, or safety-critical applications.
-
-## 👨‍💻 Project Maintainer
-
-Ravi Kumar Rao
-
-GitHub: https://github.com/Ravi506051
-
-### Example Combined 3D Results
-
-The application displays the estimated dimensions numerically. For example:
-
-| Dimension          | Estimated Value |
-| ------------------ | --------------- |
-| Width (from Front) | 8.5 cm          |
-| Depth (from Side)  | 8.5 cm          |
-| Height (Avg)       | 15.5 cm         |
-| Distance (Front)   | 0.20 m          |
-
-## Key Features
-
-* **Single/Dual Image Input:** Supports measurement from a single front view or a combination of front and side views for 3D estimation.
-* **Reference Object Calibration:** User-friendly interface to select a reference object and input its known dimension.
-* **Camera Parameter Flexibility:** Accepts either focal length (in pixels) or horizontal/vertical field of view (in degrees).
-* **Automatic Object Detection:** Attempts to automatically identify and measure multiple objects in the scene based on depth information.
-* **Streamlit Interface:** Provides an intuitive web-based interface for easy interaction.
-* **Visualization:** Overlays bounding boxes and estimated dimensions on the input images.
-
-## Methodology
-
-The core steps involved are:
-
-1.  **User Input:** Uploading images, specifying reference object dimensions, and providing camera parameters.
-2.  **Depth Prediction:** Utilizing the `Intel/dpt-hybrid-midas` pre-trained model from Hugging Face Transformers to predict depth maps.
-3.  **Scale Calibration:** Calculating a scale factor based on the reference object's known size, its pixel size in the image, its relative depth, and the camera parameters.
-4.  **Object Detection:** Employing image processing techniques on the depth map (edge detection, thresholding, connected components analysis) to identify potential objects.
-5.  **Dimension Estimation:** Using the calibrated scale, pixel dimensions, and estimated depth to calculate the real-world width, height, and distance of the detected objects.
-6.  **Two-View Fusion:** Combining measurements from front and side views (if available) to estimate the 3D dimensions.
-
-## Limitations
-
-* **Reliance on Depth Model Accuracy:** The accuracy of the results is heavily dependent on the quality of the depth maps generated by the pre-trained model.
-* **Camera Parameter Sensitivity:** Incorrect focal length or field of view values will lead to inaccurate estimations.
-* **Reference Object Requirement:** Accurate selection and known dimensions of a reference object are crucial.
-* **Object Detection Challenges:** Depth-based object detection can be unreliable in complex scenes.
-* **Two-View Assumptions:** The 3D combination assumes specific object orientations and alignment between views.
-
-# Getting Started with the Object Dimensions Detector
-
-This guide will walk you through the steps to get the Object Dimensions Detector application running.
-
-## Prerequisites
-
-Before you begin, ensure you have the following installed on your system:
-
-* **Python 3.9:** The application is written in Python.
-* **pip:** Python package installer (usually comes with Python).
-* **Git (optional but recommended):** For cloning the repository.
-
-## Installation
-
-1.  **Clone the Repository (Optional):**
-
-    You can clone the Git repository using:
-
-    ```bash
-    git clone https://github.com/HarshdeepJ/Object_Volume_Detector.git
-    cd Object_Volume_Detector
-    ```
-
-2.  **Install Dependencies:**
-
-    The application relies on several Python libraries. You can install them using `pip`. Make sure you are in the project directory (where the `requirements.txt` file, if provided, is located)
-
-    ```bash
-    pip install -r requirements.txt
-    ```
-
-## Running the Application
-
-1.  **Navigate to the Project Directory:**
-
-    Open your terminal or command prompt and navigate to the directory where `app.py` is located.
-
-2.  **Run the Streamlit Application:**
-
-    Use the `streamlit run` command followed by the name of the main Python script:
-
-    ```bash
-    streamlit run app.py
-    ```
-
-    Replace `app.py` with the actual name of the Python file that contains the Streamlit application code.
-
-
-## Using the Application
-
-1.  **Upload Images:** Follow the instructions in the application to upload one (front view) or two (front and side view) images.
-2.  **Specify Reference Object:** Enter the known real-world width of a reference object present in your image(s) (e.g., the width of an ID card).
-3.  **Provide Camera Parameters:** Enter either the focal length of your camera in pixels or the horizontal and vertical field of view (FoV) in degrees. Accurate parameters are crucial for accurate measurements. You might need to look up these specifications for your camera (e.g., smartphone camera).
-4.  **Select Reference Object:** Use the interactive drawing tool in the application to draw a bounding box around the reference object in the uploaded image.
-5.  **Run Measurement:** Click the button or follow the prompts in the application to initiate the depth estimation and dimension measurement process.
-6.  **View Results:** The application will display the detected objects (if any) with their estimated dimensions and distances overlaid on the image(s), along with numerical results.
-7.  **Two-View Analysis (Optional):** If you uploaded a second (side view) image, follow the same steps for that image to obtain depth and height measurements, which will then be combined with the front view results.
-
-## Measurement Considerations
-
-Depth-estimation models generally provide relative depth unless a reliable calibration procedure converts it to metric scale. Measurement quality depends on camera properties, the reference object's known dimensions, object boundaries, perspective, and image quality. Validate estimates against objects with known dimensions and report the observed error before using measurements in a practical setting.
-
-## Testing Checklist
-
-- Test front and side views separately before combining measurements.
-- Keep the reference object visible and measure its known dimension accurately.
-- Check behavior when the reference object or target boundary cannot be detected.
-- Treat output dimensions as estimates, not certified measurements.
-
-## Project Development Notes
-
-Compare estimated dimensions with physical measurements across varied objects and distances. Record camera parameters, reference-object calibration, and absolute/relative measurement error.
-
-For reproducible updates, record the dataset or upstream version, environment and dependency versions, configuration, and actual outputs from each run. Keep illustrative examples clearly labelled and never commit credentials or private data.
-
-### Technical Deep Dive
-
-The measurement chain combines monocular depth estimation, reference-object scale calibration, image-space object boundaries, and geometric conversion into approximate dimensions. Relative depth from a model is not automatically metric depth; the calibration assumptions and camera parameters determine whether the resulting scale is meaningful. Front/side fusion also assumes suitable object orientation and alignment.
-
-Suggested engineering checks: record model checkpoint and camera/FoV inputs, reject invalid or missing reference dimensions, compare estimates with physical measurements across distances, and report absolute and relative error. Do not use the output as a certified measurement.
-
-## Measurement Validation
-
-- Treat monocular depth as relative unless the calibration procedure provides a reliable metric scale.
-- Record camera parameters, reference-object dimensions, image resolution, and the exact calibration method for each measurement.
-- Compare predicted dimensions with manually measured ground truth across multiple object sizes and distances.
-- Report absolute and relative error, and inspect how errors change with lighting, occlusion, perspective, and reference placement.
-- Clearly label results as estimates; camera and calibration uncertainty can substantially affect measurements.
-
-## Measurement and Calibration Notes
-
-- Document the camera setup, reference object dimensions, measurement units, and assumptions used for scale estimation.
-- Keep camera position and object distance consistent where the method requires calibration.
-- Validate measurements against known reference objects and report absolute or percentage error.
-- Handle partial occlusion, perspective distortion, poor lighting, and inaccurate object boundaries explicitly.
-- Present volume estimates with their units and explain that accuracy depends on calibration and geometric assumptions.
-
-## Measurement Calibration and Error Analysis
-
-- Evaluate estimates against manually measured ground-truth objects across different sizes, distances, and camera angles.
-- Record reference-object dimensions, camera parameters, image resolution, and calibration assumptions for each test.
-- Report absolute and relative measurement error, and inspect whether error increases with distance or object shape.
-- Explain that monocular depth and single-view scale estimates are approximate; avoid presenting them as precision instruments.
+# Object Dimension Estimation from Images
+
+A computer-vision application that explores estimating object dimensions and distance from one or more camera images using monocular depth estimation and a known reference measurement.
+
+## Workflow
+1. Upload a front image and, optionally, a side image.
+2. Estimate relative depth using a pre-trained depth model.
+3. Select a reference object with a known real-world dimension.
+4. Calibrate scale from the reference measurement.
+5. Estimate object dimensions and distance.
+6. Combine views when the two-view workflow is used.
+
+## Technology
+Python · Streamlit · Computer Vision · Depth Estimation · DPT
+
+## Getting started
+```bash
+git clone https://github.com/Ravi506051/Object_Volume_Detector-main.git
+cd Object_Volume_Detector-main
+pip install -r requirements.txt
+```
+Launch the Streamlit entry point specified in the repository. Review the model setup instructions before running inference.
+
+## Accuracy considerations
+Monocular depth maps are generally relative, and dimension estimates depend on camera geometry, reference-object accuracy, image quality and object boundaries. Treat measurements as approximate unless calibrated against physical measurements.
+
+## Future improvements
+Add calibration examples, uncertainty ranges, repeatability tests and comparisons against measured ground truth.
+
+## Maintainer
+**Ravi Kumar Rao** · [GitHub](https://github.com/Ravi506051)
