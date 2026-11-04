@@ -29,3 +29,15 @@ Add calibration examples, uncertainty ranges, repeatability tests and comparison
 
 ## Maintainer
 **Ravi Kumar Rao** · [GitHub](https://github.com/Ravi506051)
+
+## Skills Demonstrated
+
+- Computer vision
+- monocular depth estimation
+- reference-based calibration
+- image processing
+- measurement uncertainty.
+
+## Portfolio Context
+
+This project is part of my hands-on learning portfolio. The repository documents the workflow and implementation; results should be reproduced from the included code and data before being used in reports or professional claims.
