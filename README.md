@@ -43,3 +43,10 @@ A reliable measurement workflow should record the reference object's known size,
 ## Practical Scope
 
 This project is best treated as a computer-vision prototype for approximate dimension estimation. It is not a replacement for calibrated industrial measurement equipment.
+
+## Measurement Validation
+
+- Compare estimated dimensions against objects with independently measured ground truth.
+- Report absolute error and percentage error across different sizes, distances, and camera angles.
+- Re-check reference-object calibration whenever the camera setup or capture conditions change.
+- Image-based measurements are approximate and should not be used as certified measurements without calibration and validation.
