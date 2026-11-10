@@ -35,3 +35,11 @@ Add calibration guidance, uncertainty ranges, repeatability tests, and a benchma
 
 ## Maintainer
 **Ravi Kumar Rao** · [GitHub](https://github.com/Ravi506051)
+
+## Calibration and Error Analysis
+
+A reliable measurement workflow should record the reference object's known size, camera viewpoint, image resolution, and the estimated-versus-measured dimensions. Evaluate the system with several objects and capture distances, then report mean absolute error and percentage error when ground-truth measurements are available. Recalibrate when the camera setup or image geometry changes.
+
+## Practical Scope
+
+This project is best treated as a computer-vision prototype for approximate dimension estimation. It is not a replacement for calibrated industrial measurement equipment.
