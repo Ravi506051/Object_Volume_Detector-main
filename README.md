@@ -1,52 +1,28 @@
-# Object Dimension Estimation from Images
+# Object Dimension Detector
 
-A computer-vision application exploring object dimension and distance estimation from camera images using monocular depth estimation and a known reference measurement.
+A Streamlit computer-vision prototype that estimates object dimensions from images using monocular depth estimation and a known-size reference object.
 
-## Workflow
-1. Upload a front image and, optionally, a side image.
-2. Estimate relative depth with a pretrained depth model.
-3. Select a reference object with a known real-world dimension.
-4. Calibrate the scale using the reference measurement.
-5. Estimate object dimensions and distance.
-6. Combine views when the two-image workflow is enabled.
+## Run locally
 
-## Technology
-Python · Streamlit · Computer Vision · Depth Estimation · DPT
-
-## Setup
-```bash
+~~~bash
 git clone https://github.com/Ravi506051/Object_Volume_Detector-main.git
 cd Object_Volume_Detector-main
+python -m venv .venv
+# Windows: .venv\Scripts\activate
 pip install -r requirements.txt
-```
-Launch the Streamlit entry point specified in the repository and follow its model setup instructions.
+streamlit run app.py
+~~~
 
-## Technical Considerations
-Monocular depth maps are generally relative rather than absolute. Estimated dimensions depend on camera geometry, reference-object accuracy, image quality, perspective, and object boundaries. Treat outputs as approximations unless validated against physical measurements.
+The first run may need to download the configured pretrained depth model. See Getting_Started.md for project-specific setup notes. main.py and the notebooks contain related experiments.
 
-## Validation Ideas
-- Compare estimates with ruler or caliper measurements.
-- Repeat captures at different distances and angles.
-- Record absolute and percentage measurement error.
-- Test objects with different shapes and surface textures.
+## Measurement workflow
 
-## Future Improvements
-Add calibration guidance, uncertainty ranges, repeatability tests, and a benchmark against measured ground truth.
+Provide an image, identify a reference object with known dimensions, estimate relative depth, then review the scale-calibrated dimension estimate.
+
+## Calibration and limits
+
+Monocular depth is generally relative. Scale depends on reference size, camera angle, perspective, object boundaries, and image quality. Treat outputs as approximate. Validate against independently measured objects and report errors across multiple examples before practical use.
 
 ## Maintainer
-**Ravi Kumar Rao** · [GitHub](https://github.com/Ravi506051)
 
-## Calibration and Error Analysis
-
-A reliable measurement workflow should record the reference object's known size, camera viewpoint, image resolution, and the estimated-versus-measured dimensions. Evaluate the system with several objects and capture distances, then report mean absolute error and percentage error when ground-truth measurements are available. Recalibrate when the camera setup or image geometry changes.
-
-## Practical Scope
-
-This project is best treated as a computer-vision prototype for approximate dimension estimation. It is not a replacement for calibrated industrial measurement equipment.
-
-## Measurement Validation
-
-- Compare estimated dimensions against objects with independently measured ground truth.
-- Report absolute error and percentage error across different sizes, distances, and camera angles.
-- Re-check reference-object calibration whenever the camera setup or capture conditions change.
-- Image-based measurements are approximate and should not be used as certified measurements without calibration and validation.
+Ravi Kumar Rao · [GitHub](https://github.com/Ravi506051)
