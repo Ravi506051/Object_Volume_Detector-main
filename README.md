@@ -23,6 +23,11 @@ Provide an image, identify a reference object with known dimensions, estimate re
 
 Monocular depth is generally relative. Scale depends on reference size, camera angle, perspective, object boundaries, and image quality. Treat outputs as approximate. Validate against independently measured objects and report errors across multiple examples before practical use.
 
+## Reference-object calibration
+
+The app uses a known-size reference for scale calibration; its default reference width is 0.0856 m (an ID-1 card). Confirm the selected reference and its real measurement before interpreting estimates. Changing the camera viewpoint or reference size changes the scale.
+
+
 ## Maintainer
 
 Ravi Kumar Rao · [GitHub](https://github.com/Ravi506051)
